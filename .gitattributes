@@ -20,3 +20,11 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+
+# PHP
+*.php
+*.PHP
+
+# Sound
+*.wav
+*.WAV
