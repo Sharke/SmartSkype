@@ -28,3 +28,7 @@
 # Sound
 *.wav
 *.WAV
+
+# dll
+*.dll
+*.DLL
