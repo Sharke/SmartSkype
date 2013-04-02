@@ -18,10 +18,14 @@ There's probably a couple of other things but off the top of my very tired head 
 
 -.A file grab method?
 
-  if (File.Exists(Path))\n
+  if (File.Exists(Path))
+
         {
-          //Email the file to user 
+
+          //Email the file to user
+
           //Or something along those lines
+       
         } 
 
 
