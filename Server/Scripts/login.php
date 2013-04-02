@@ -1,6 +1,6 @@
 <?php
 $user = $_GET["user"];
-$data = file_get_contents('users.txt');
+$data = file_get_contents('../ApprovedUsers.txt');
 
 if(strpos($data, $user) !== FALSE)
 {
