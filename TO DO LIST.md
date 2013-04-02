@@ -3,7 +3,7 @@ SmartSkype
 
 Skype remote controller
 
-Will update more later but off the top of my head
+There's probably a couple of other things but off the top of my very tired head the following things come to mind
 
 -Reciever
 =========
