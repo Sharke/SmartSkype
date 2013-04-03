@@ -35,7 +35,7 @@ namespace sBot
                 if (login(msg.Sender.Handle) == true)
                 {
 
-                    string command = msg.Body.Remove(0, trigger.Length).ToLower();
+                    string command = msg.Body.Remove(0, trigger.Length);
                     commanda = command.Split(' ');
 
                     skypebot.SendMessage(msg.Sender.Handle, name +
@@ -76,15 +76,15 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=message" + "&instruction=" + message);
+                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=message" + "&instruction=MESSAGE:" + message);
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=message" + "&instruction=" + message);
+                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=message" + "&instruction=MESSAGE:" + message);
                 data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
-                reply = "Command sent to " + data;
+                reply = "Command sent to\n" + data;
             }
 
             return reply;
