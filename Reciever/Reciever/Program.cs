@@ -47,7 +47,7 @@ namespace Reciever
         //Starts listener and keep alive timer
         static void StartTimers()
         {
-            KeepAliveTimer = new UITimer(Functions.Connection.KeepAlive, 5, 300000, 300000);
+            KeepAliveTimer = new UITimer(Functions.Connection.KeepAlive, 5, 1000, 300000);
             Listener = new UITimer(Functions.Connection.Listen, 5, 1000, 1000);
         }
     }
