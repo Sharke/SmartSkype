@@ -8,7 +8,7 @@ There's probably a couple of other things but off the top of my very tired head 
 -Reciever
 =========
 
--.Code needs to finish getting cleaned up - added most functions into seperate class, some still remain. //DONE looks like even a bigger clusterfucl
+-.Code needs to finish getting cleaned up - added most functions into seperate class, some still remain. //DONE looks like even a bigger clusterfuck
 
 -.Webcam integrationd *cough gohan* //DONE :D
 
