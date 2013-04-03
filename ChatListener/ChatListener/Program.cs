@@ -184,7 +184,7 @@ namespace sBot
             }
             else
             {
-                reply = "Sorry Fresh command cannot currently be send globally";
+                reply = "Sorry Fresh command cannot currently be sent globally";
                 //WebClient web = new WebClient();
                 //string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=install&instruction=FRESH:True");
                 //data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
