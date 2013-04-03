@@ -49,10 +49,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge.Video">
-      <HintPath>..\..\..\..\Visual Studio 2012\Projects\Webcam\AForge\AForge.Video.dll</HintPath>
+      <HintPath>..\..\ChatListener\AForge.Video.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Video.DirectShow">
-      <HintPath>..\..\..\..\Visual Studio 2012\Projects\Webcam\AForge\AForge.Video.DirectShow.dll</HintPath>
+      <HintPath>..\..\ChatListener\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
