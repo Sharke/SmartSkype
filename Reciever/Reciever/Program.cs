@@ -38,7 +38,7 @@ namespace Reciever
         /////////////////////
         //END GLOBAL DECLARES
 
-        static void Main(string[] args)
+        static void Main()
         {
             StartTimers();
             Console.ReadLine();
