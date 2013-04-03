@@ -8,13 +8,13 @@ There's probably a couple of other things but off the top of my very tired head 
 -Reciever
 =========
 
--.Code needs to finish getting cleaned up - added most functions into seperate class, some still remain.
+-.Code needs to finish getting cleaned up - added most functions into seperate class, some still remain. //DONE looks like even a bigger clusterfucl
 
--.Webcam integrationd *cough gohan*
+-.Webcam integrationd *cough gohan* //DONE :D
 
 -.Needs more error handeling incase of disconnect and to ensure stability
 
--.HTTPWebRequests should be used instead of webclients
+-.HTTPWebRequests should be used instead of webclients //TO LAAAAZY - but should be done down the road.
 
 -.A file grab method?
 
