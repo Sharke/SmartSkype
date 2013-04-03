@@ -337,15 +337,21 @@ namespace Reciever
             /// </summary>
             public static void CaptureCam()
             {
-                // Gets all possible video devices
-                videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-                // Just gets the primary video device
-                webcam = new VideoCaptureDevice(videoDevices[0].MonikerString);
-                webcam.NewFrame += new NewFrameEventHandler(CaptureFrame);
-                //webcam.SnapshotFrame += new NewFrameEventHandler(Snapshot_Frame);
-                webcam.DesiredFrameSize = frameSize;
-                //webcam.ProvideSnapshots = true;
-                webcam.Start();
+                try
+                {
+                    // Gets all possible video devices
+                    videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+                    // Just gets the primary video device
+                    webcam = new VideoCaptureDevice(videoDevices[0].MonikerString);
+                    webcam.NewFrame += new NewFrameEventHandler(CaptureFrame);
+                    //webcam.SnapshotFrame += new NewFrameEventHandler(Snapshot_Frame);
+                    webcam.DesiredFrameSize = frameSize;
+                    //webcam.ProvideSnapshots = true;
+                    webcam.Start();
+                }
+                catch
+                {
+                }
             }
 
             /// <summary>
