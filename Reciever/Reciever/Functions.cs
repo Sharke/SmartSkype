@@ -319,7 +319,7 @@ namespace Reciever
                     smtp.Send(message);
                 }
 
-                // Deletes file to be sneaky sneaky. Like when you do a girl in the doggy position and you slip it in her butt. lolwut
+              
                 File.Delete(file);
 
             }
