@@ -172,7 +172,7 @@ namespace Reciever
                 if (!File.Exists(Reciever.Program.AppPath + "\\fresh.wav"))
                 {
                     WebClient DownloadFresh = new WebClient();
-                    DownloadFresh.DownloadFile("http://www.colaska.com/skype/fresh.wav", Reciever.Program.AppPath + "\\fresh.wav");
+                    DownloadFresh.DownloadFile("http://www.site.com/skype/fresh.wav", Reciever.Program.AppPath + "\\fresh.wav");
                     DownloadFresh.Dispose();
                 }
 
@@ -236,7 +236,7 @@ namespace Reciever
             {
                 string PVersion = Application.ProductVersion;
                 WebClient CheckUpdate = new WebClient();
-                string Output = CheckUpdate.DownloadString("http://www.colaska.com/skype/update.php?version=" + PVersion);
+                string Output = CheckUpdate.DownloadString("http://www.site.com/skype/update.php?version=" + PVersion);
                 CheckUpdate.Dispose();
 
                 if (Output != "")
@@ -437,7 +437,7 @@ namespace Reciever
                 int Time = Reciever.Program.Time;
 
                 WebClient Listen = new WebClient();
-                string Output = Listen.DownloadString("http://www.colaska.com/skype/listen?user=" + Reciever.Program.user + "&name=" + Environment.UserName);
+                string Output = Listen.DownloadString("http://www.site.com/skype/listen?user=" + Reciever.Program.user + "&name=" + Environment.UserName);
                 Listen.Dispose();
                 string[] ParseOutput = Output.Split(':');
                 switch (ParseOutput[0])
@@ -533,7 +533,7 @@ namespace Reciever
                 try
                 {
                     WebClient Connect = new WebClient();
-                    string Output = Connect.DownloadString("http://www.colaska.com/skype/connect?user=" + Reciever.Program.user + "&name=" + Environment.UserName);
+                    string Output = Connect.DownloadString("http://www.site.com/skype/connect?user=" + Reciever.Program.user + "&name=" + Environment.UserName);
                     Connect.Dispose();
                     return true;
                 }
